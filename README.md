@@ -1,1 +1,1 @@
-# coderknows.github.io
+# Информационный сайт по кодингу «[Кодер знает...](coderknows.com)»
