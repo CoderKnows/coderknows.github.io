@@ -13,20 +13,25 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
+
 title: Кодер знает...
-email: feedback@coderknows.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Небольшие статейки по кодинку на PHP, Python, SQL, JS, CSS и HTML
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://coderknows.com" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: VdovenkoEV
-github_username:  CoderKnows
+  Небольшие статейки по кодинку на PHP, Python, SQL, JS, CSS и HTML и на сопутствующие темы
+
+# the subpath of your site, e.g. /blog
+baseurl: "/"
+# the base hostname & protocol for your site, e.g. http://example.com
+url: "http://coderknows.com"
+
+email: feedback@coderknows.com
+github_username: CoderKnows
 
 # Build settings
 markdown: kramdown
-theme: minima
+# theme: minima
 plugins:
-  - jekyll-feed
+#  - jekyll-feed
+#  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -39,3 +44,7 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+sass:
+  sass_dir: _sass
+  style: compressed
