@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Наши авторы
-permalink: /authors/
+permalink: /author/
 ---
 
 Страница со списком наших авторов
