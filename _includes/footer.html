@@ -1,10 +1,36 @@
-<footer class="blog-footer">
-    <p class="text-nowrap">
-        <i class="far fa-copyright"></i> {{ 'now' | date: "%Y" }} Copyright &laquo;{{ site.title }}&raquo; | All rights reserved
-    </p>
-    <p>
-        <a href="#" class="back-to-top" style="display: none;">Наверх</a>
-    </p>
+<footer class="blog-footer pt-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-3 order-2 order-lg-1 text-center">
+                О нас
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2 text-center">
+                <p class="text-nowrap">
+                    <span class="text-nowrap">
+                        <i class="far fa-copyright"></i>{{ 'now' | date: "%Y" }}
+                    </span>
+                    <span class="d-none d-sm-inline">
+                        Copyright
+                    </span>
+                    <span class="text-nowrap">
+                        &laquo;{{ site.title }}&raquo;
+                    </span>
+                    <span class="text-nowrap d-none d-md-inline">
+                      | All rights reserved
+                    </span>
+                </p>
+            </div>
+            <div class="col-12 col-lg-3 order-3 order-lg-3 text-center">
+                Контакты
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <a href="#" class="back-to-top" style="display: none;">Наверх</a>
+            </div>
+        </div>
+    </div>
 </footer>
 
 <script src="{{ '/assets/js/fontawesome.all.min.js' | relative_url }}"></script>

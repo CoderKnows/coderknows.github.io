@@ -1,5 +1,18 @@
-/* stylelint-disable selector-list-comma-newline-after */
+$footer-height: 10rem;
 
+/* stylelint-disable selector-list-comma-newline-after */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+/*
+ * Header
+ */
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
@@ -14,43 +27,27 @@
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+/*
+ * Footer
+ */
+.blog-footer {
+  position: absolute;
+  bottom: 0;
+  height: $footer-height;
+  min-width: 100%;
+
+  border-top: .05rem solid #e5e5e5;
+  background-color: #f9f9f9;
+  color: #999;
 }
 
 .display-4 {
   font-size: 2.5rem;
 }
-@media (min-width: 768px) {
+@include media-breakpoint-down(sm) {
   .display-4 {
     font-size: 3rem;
   }
-}
-
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
-.nav-scroller .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
 }
 
 .card-img-right {
@@ -64,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .h-250 { height: 250px; }
-@media (min-width: 768px) {
+@include media-breakpoint-down(sm) {
   .h-md-250 { height: 250px; }
 }
 
@@ -110,16 +107,18 @@ h1, h2, h3, h4, h5, h6 {
   color: #999;
 }
 
-/*
- * Footer
- */
-.blog-footer {
-  padding: 2.5rem 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
+@include media-breakpoint-down(xs) {
+
 }
-.blog-footer p:last-child {
-  margin-bottom: 0;
+
+@include media-breakpoint-down(sm) {
+
+}
+
+@include media-breakpoint-down(md) {
+
+}
+
+@include media-breakpoint-down(lg) {
+
 }

@@ -2,12 +2,22 @@
 <html lang="en">
     {% include head.html %}
 <body>
-<div class="container">
-    {% include header.html %}
 
-    {{ content }}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col">
+            {% include header.html %}
+        </div>
+    </div>
 
-    {% include footer.html %}
-</div>
+    <div class="row">
+        <div class="col">
+            {{ content }}
+        </div>
+    </div>
+</main>
+
+{% include footer.html %}
+
 </body>
 </html>
