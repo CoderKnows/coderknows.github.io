@@ -9,12 +9,12 @@ html {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   a {
-    color: #000000;
+    color: $dark;
   }
 
   a:hover {
     text-decoration: none;
-    color: #000000;
+    color: $dark;
   }
 }
 
@@ -45,7 +45,8 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer {
   position: absolute;
   bottom: 0;
-  height: $footer-height;
+  height: auto;
+  min-height: $footer-height;
   min-width: 100%;
 
   border-top: .05rem solid #e5e5e5;
@@ -94,7 +95,7 @@ main.container {
   margin-bottom: 4rem;
 }
 .blog-post-title {
-  margin-bottom: .25rem;
+  margin-bottom: 1.25rem;
   font-size: 2.5rem;
 }
 
@@ -107,7 +108,7 @@ main.container {
 }
 
 .blog-post-meta {
-  margin-bottom: 1.25rem;
+  margin-bottom: .25rem;
   color: #999;
 }
 

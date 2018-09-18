@@ -11,13 +11,15 @@ permalink: /author/
             <a name="{{ author[0] }}"></a>
             <img class="rounded-circle img-fluid d-block mx-auto" src="{{ '/assets/img/avatars/' | append: author[0] | append: '_0200_0200.jpg' | relative_url }}" alt="{{ author[1].name }}">
             <h3>
-                <a href="{{ author[1].web }}" title="{{ author[1].name }}">
+                <a href="{{ author[1].web }}" title="{{ author[1].name }}" target="_blank">
                     {{ author[1].name }}
                 </a>
-                <small>
-                    <a href="mailto:{{ author[1].email }}">{{ author[1].email }}</a>
-                </small>
+                <sup><i class="fas fa-external-link-alt" style="color: #6c757d;"></i></sup>
             </h3>
+            <p class="contacts text-nowrap">
+                <i class="fas fa-at" style="color: #6c757d;"></i>
+                <a href="mailto:{{ author[1].email }}">{{ author[1].email }}</a>
+            </p>
             <p>{{ author[1].summary }}</p>
         </div>
         {% endfor %}

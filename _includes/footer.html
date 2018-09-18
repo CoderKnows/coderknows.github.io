@@ -5,7 +5,7 @@
                 <p><strong>О нас</strong></p>
                 <p>{{ site.description }}</p>
             </div>
-            <div class="col-12 col-lg-6 order-1 order-lg-2 text-center">
+            <div class="col-12 col-lg-6 order-1 order-lg-2 text-center d-flex justify-content-center align-items-end">
                 <p class="text-nowrap">
                     <span class="text-nowrap">
                         <i class="far fa-copyright"></i>{{ 'now' | date: "%Y" }}
@@ -22,7 +22,15 @@
                 </p>
             </div>
             <div class="col-12 col-lg-3 order-3 order-lg-3 text-center">
-                Контакты
+                <p><strong>Контакты</strong></p>
+                <p class="text-nowrap">
+                    <a class="contacts social" style="color: #007bff;" target="_blank" href="{{ 'https://t.me/' | append: site.telegram_username }}">
+                        <i class="fab fa-telegram fa-2x"></i>
+                    </a>
+                    <a class="contacts social" style="color: #333333;" target="_blank" href="{{ 'https://github.com/' | append: site.github_username }}">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </p>
             </div>
         </div>
 

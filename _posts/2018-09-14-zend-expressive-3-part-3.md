@@ -6,7 +6,6 @@ date:   2018-09-14 09:10:00 +0000
 tags:   zend-expressive zend-db database php frameworks
 categories: zend expressive
 ---
-# Работа с базами даннных в Zend Expressive 3
 
 На моей памяти, чаще всего для работы с базами данных в PHP-проектах используют Doctrine ORM.
 В версии 2 данная ORM использует паттерн _Data Mapper_.
