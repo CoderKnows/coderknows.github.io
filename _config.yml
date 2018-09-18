@@ -16,7 +16,7 @@
 
 title: Кодер знает...
 description: >- # this means to ignore newlines until "baseurl:"
-  Небольшие статейки по кодинку на PHP, Python, SQL, JS, CSS и HTML и на сопутствующие темы
+  Заметки о программном коде
 
 # the subpath of your site, e.g. /blog
 baseurl: "/"
@@ -30,8 +30,11 @@ github_username: CoderKnows
 markdown: kramdown
 # theme: minima
 plugins:
+  - jekyll-paginate
   - jekyll-feed
 #  - jekyll-seo-tag
+
+paginate: 3
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

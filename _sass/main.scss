@@ -8,6 +8,18 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  a {
+    color: #000000;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: #000000;
+  }
+}
+
+.bg-black {
+  background-color: #000000 !important;
 }
 
 /*
@@ -41,28 +53,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #999;
 }
 
-.display-4 {
-  font-size: 2.5rem;
-}
-@include media-breakpoint-down(sm) {
-  .display-4 {
-    font-size: 3rem;
-  }
-}
-
-.card-img-right {
-  height: 100%;
-  border-radius: 0 3px 3px 0;
-}
-
-.flex-auto {
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-}
-
-.h-250 { height: 250px; }
-@include media-breakpoint-down(sm) {
-  .h-md-250 { height: 250px; }
+/*
+ * Main
+ */
+main.container {
+  margin-bottom: ($footer-height + 5);
 }
 
 /*
@@ -102,9 +97,30 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .25rem;
   font-size: 2.5rem;
 }
+
+.blog-post-title a {
+  color: #000000;
+}
+
+.blog-post-title a:hover {
+  text-decoration: none;
+}
+
 .blog-post-meta {
   margin-bottom: 1.25rem;
   color: #999;
+}
+
+/*
+ * Contacts
+ */
+.contacts a {
+  color: #000000;
+}
+
+.contacts a:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
 @include media-breakpoint-down(xs) {

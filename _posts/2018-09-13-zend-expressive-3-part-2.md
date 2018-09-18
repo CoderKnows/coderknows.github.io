@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: post
 title:  "Zend Service Manager в качестве DI-контейнера Zend Expressive 3"
+author: vdovenko_eugene
 date:   2018-09-13 16:40:00 +0000
 tags:   zend-expressive zend-servicemanager DI php frameworks
 categories: zend expressive

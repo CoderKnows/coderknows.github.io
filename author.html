@@ -1,0 +1,25 @@
+---
+layout: default
+title: Наши авторы
+permalink: /author/
+---
+
+<div class="col">
+    <div class="row">
+        {% for author in site.data.authors %}
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+            <a name="{{ author[0] }}"></a>
+            <img class="rounded-circle img-fluid d-block mx-auto" src="{{ '/assets/img/avatars/' | append: author[0] | append: '_0200_0200.jpg' | relative_url }}" alt="{{ author[1].name }}">
+            <h3>
+                <a href="{{ author[1].web }}" title="{{ author[1].name }}">
+                    {{ author[1].name }}
+                </a>
+                <small>
+                    <a href="mailto:{{ author[1].email }}">{{ author[1].email }}</a>
+                </small>
+            </h3>
+            <p>{{ author[1].summary }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>

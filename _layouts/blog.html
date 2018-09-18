@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<div class="col-12 col-md-8 blog-main">
+    {% for post in paginator.posts %}
+        {% assign author = site.data.authors[post.author] %}
+
+        <div class="blog-post">
+            <p class="blog-post-meta">
+                <time>{{ post.date | date: "%d-%m-%Y" }}</time>
+                {% if author %}
+                    <span>by <a href="{{ '/author/#' | append: post.author | relative_url }}" target="_blank">{{ author.name }}</a></span>
+                {% endif %}
+            </p>
+
+            <h2 class="blog-post-title">
+                <a href="{{ post.url }}">{{ post.title }}</a>
+            </h2>
+
+            {% if post.summary %}
+                <p>{{ post.summary }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {% if paginator.total_pages > 1 %}
+    <nav class="blog-pagination">
+        {% if paginator.previous_page %}
+            <a class="btn btn-outline-primary" href="{{ paginator.previous_page_path | relative_url }}">Назад</a>
+        {% else %}
+            <a class="btn btn-outline-secondary disabled" href="#">Назад</a>
+        {% endif %}
+
+        {% if paginator.next_page %}
+            <a class="btn btn-outline-primary" href="{{ paginator.next_page_path | relative_url }}">Вперед</a>
+        {% else %}
+            <a class="btn btn-outline-secondary disabled" href="#">Вперед</a>
+        {% endif %}
+
+    </nav>
+    {% endif %}
+</div>
+
+<aside class="col-12 col-md-4 blog-sidebar bg-black">
+    &nbsp;
+</aside>
