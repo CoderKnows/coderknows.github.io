@@ -23,6 +23,8 @@ baseurl: "/"
 # the base hostname & protocol for your site, e.g. http://example.com
 url: "http://coderknows.com"
 
+permalink: /:year/:month/:day/:title/
+
 email: feedback@coderknows.com
 github_username: CoderKnows
 telegram_username: CoderKnows
@@ -35,7 +37,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-paginate: 5
+paginate: 2
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

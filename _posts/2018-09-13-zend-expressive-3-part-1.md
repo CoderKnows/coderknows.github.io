@@ -3,8 +3,8 @@ layout: post
 title:  "Новый проект на Zend Expressive 3"
 author: vdovenko_eugene
 date:   2018-09-13 14:30:00 +0000
-tags:   zend-expressive php frameworks
-categories: zend expressive
+tags:   [Zend Expressive, php, frameworks]
+categories: [Zend Expressive]
 ---
 
 __Zend Expressive__ - это микрофреймворк, завязанный на использование промежуточного программного обеспечения (middleware).

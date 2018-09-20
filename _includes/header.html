@@ -25,7 +25,11 @@
 <div class="py-1 mb-2">
     <nav class="navbar navbar-expand-md navbar-light" style="padding: 0;">
         <div class="collapse navbar-collapse d-md-flex text-center justify-content-md-between" id="navbarTogglerDemo01">
-            <a class="nav-link p-2 text-muted" href="{{ '/' | relative_url }}">Блог</a>
+            <a class="nav-link p-2 text-muted" href="{{ '/' | relative_url }}"><b>Все</b></a>
+            {% for category in site.categories %}
+            {% assign slugCategory = category[0] | slugify %}
+            <a class="nav-link p-2 text-muted" href="{{ '/categories/' | append: slugCategory | relative_url }}">{{ category[0] }}</a>
+            {% endfor %}
             <a class="nav-link p-2 text-muted" href="{{ '/author/' | relative_url }}">Авторы</a>
             <a class="nav-link p-2 text-muted" href="{{ '/contact/' | relative_url }}">Контакты</a>
         </div>

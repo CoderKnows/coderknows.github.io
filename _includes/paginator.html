@@ -1,0 +1,16 @@
+{% if paginator.total_pages > 1 %}
+<nav class="blog-pagination">
+    {% if paginator.previous_page %}
+        <a class="btn btn-outline-primary" href="{{ paginator.previous_page_path | relative_url }}">Назад</a>
+    {% else %}
+        <a class="btn btn-outline-secondary disabled" href="#">Назад</a>
+    {% endif %}
+
+    {% if paginator.next_page %}
+        <a class="btn btn-outline-primary" href="{{ paginator.next_page_path | relative_url }}">Вперед</a>
+    {% else %}
+        <a class="btn btn-outline-secondary disabled" href="#">Вперед</a>
+    {% endif %}
+
+</nav>
+{% endif %}

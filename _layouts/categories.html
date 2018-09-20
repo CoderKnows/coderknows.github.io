@@ -1,13 +1,12 @@
 ---
-layout: default
+layout:    default
 ---
-
 <div class="col-12 col-md-8 blog-main">
-    {% for post in paginator.posts %}
+    {% assign currentCategory = page.categories | first %}
+
+    {% for post in site.categories[currentCategory] %}
         {% include postcard.html %}
     {% endfor %}
-
-    {% include paginator.html %}
 </div>
 
 <aside class="col-12 col-md-4 blog-sidebar">

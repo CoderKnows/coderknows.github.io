@@ -1,0 +1,11 @@
+<div class="row my-4">
+    <div class="col-12">
+        {% for tag in page.tags %}
+            {% assign slugTag = tag | slugify: 'latin' %}
+
+            {% if slugTag.size > 0 %}
+                <a class="badge badge-info" href="{{ '/tags/' | append: slugTag | relative_url }}">{{ tag }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

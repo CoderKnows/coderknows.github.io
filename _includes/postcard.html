@@ -1,0 +1,20 @@
+{% assign author = site.data.authors[post.author] %}
+
+<div class="blog-post">
+    <p class="blog-post-meta">
+        <time>{{ post.date | date: "%d-%m-%Y" }}</time>
+        {% if author %}
+            // <a href="{{ '/author/#' | append: post.author | relative_url }}">{{ author.name }}</a>
+        {% endif %}
+    </p>
+
+    <h2 class="blog-post-title">
+        <a href="{{ post.url }}" class="text-dark">{{ post.title }}</a>
+    </h2>
+
+    {% if post.summary %}
+        <p>{{ post.summary }}</p>
+    {% else %}
+        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+    {% endif %}
+</div>
