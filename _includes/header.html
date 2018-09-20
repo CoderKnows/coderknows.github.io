@@ -26,12 +26,20 @@
     <nav class="navbar navbar-expand-md navbar-light" style="padding: 0;">
         <div class="collapse navbar-collapse d-md-flex text-center justify-content-md-between" id="navbarTogglerDemo01">
             <a class="nav-link p-2 text-muted" href="{{ '/' | relative_url }}"><b>Все</b></a>
+
             {% for category in site.categories %}
-            {% assign slugCategory = category[0] | slugify %}
-            <a class="nav-link p-2 text-muted" href="{{ '/categories/' | append: slugCategory | relative_url }}">{{ category[0] }}</a>
+                {% assign slugCategory = category[0] | slugify %}
+                <a class="nav-link p-2 text-muted" href="{{ '/categories/' | append: slugCategory | relative_url }}">{{ category[0] }}</a>
             {% endfor %}
-            <a class="nav-link p-2 text-muted" href="{{ '/author/' | relative_url }}">Авторы</a>
-            <a class="nav-link p-2 text-muted" href="{{ '/contact/' | relative_url }}">Контакты</a>
+
+            {% assign nodes = site.pages | sort:"url" %}
+            {% for node in nodes %}
+                {% if node.title != null %}
+                    <a class="nav-link p-2 text-muted{% if page.url == node.url %} active{% endif %}" href="{{ node.url | relative_url }}">
+                        {{ node.title }}
+                    </a>
+                {% endif %}
+            {% endfor %}
         </div>
     </nav>
 </div>
