@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "MySQL Cheatsheet"
+author: vdovenko_eugene
+#date:  2018-12-16 00:00:00 +0000
+tags:   [Linux, MySQL, MariaDB, DevOps, cheatsheet]
+categories: [DevOps]
+---
+<div class="cheatsheet">
+    <div class="block">
+        <div class="block-header">
+            <h4>Бэкап и восстановление</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>zcat /path/to/file.sql.gz | mysql -u USERNAME -pPASSWORD your_database</dt>
+                <dd>восстанавливает базу данных из файла в архиве gz</dd>
+
+                <dt>tar -xzOf /path/to/file.sql.tar.gz | mysql -u USERNAME -pPASSWORD your_database</dt>
+                <dd>восстанавливает базу данных из файла в архиве tar.gz</dd>
+            </dl>
+        </div>
+    </div>
+
+</div>

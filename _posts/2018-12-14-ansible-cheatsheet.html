@@ -1,0 +1,75 @@
+---
+layout: post
+title:  "Ansible Cheatsheet"
+author: vdovenko_eugene
+#date:  2018-12-14 00:00:00 +0000
+tags:   [Ansible, DevOps, automation, cheatsheet]
+categories: [DevOps]
+---
+<div class="cheatsheet">
+    <div class="block">
+        <div class="block-header">
+            <h4>Install Ansible</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>sudo apt-get update</dt>
+                <dd></dd>
+
+                <dt>sudo apt-get install software-properties-common</dt>
+                <dd></dd>
+
+                <dt>sudo apt-add-repository --yes --update ppa:ansible/ansible</dt>
+                <dd>подключение репозитория</dd>
+
+                <dt>sudo apt-get install ansible</dt>
+                <dd>установка Ansible</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-header">
+            <h4>Ansible Galaxy</h4>
+            <p>Устанавливает в каталог /home/&lt;user-home-dir&gt;/.ansible/roles/ playbook-и из сервиса
+                <a href="https://galaxy.ansible.com">galaxy.ansible.com</a></p>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>ansible-galaxy install nginxinc.nginx</dt>
+                <dd>Официальный playbook от <a href="https://galaxy.ansible.com/nginxinc">NGINX</a>.</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-header">
+            <h4>Ansible Inventory</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>/etc/ansible/hosts</dt>
+                <dd>файл с перечнем хостов и серверов</dd>
+
+                <dt>localhost ansible_connection=local</dt>
+                <dd>хост для локального подключения (через UNIX-socket)</dd>
+
+                <dt>ansible-inventory --list</dt>
+                <dd>выводит список хостов в json-формате</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-header">
+            <h4>Ansible Inventory</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt><a href="https://docs.ansible.com/" target="_blank" rel="nofollow">docs.ansible.com</a></dt>
+                <dd>Документация по Ansible</dd>
+            </dl>
+        </div>
+    </div>
+
+</div>

@@ -4,7 +4,7 @@ title:  "Работа с базами даннных в Zend Expressive 3"
 author: vdovenko_eugene
 date:   2018-09-14 09:10:00 +0000
 tags:   [Zend Expressive, zend-db, database, php, frameworks]
-categories: [Zend Expressive]
+categories: [PHP]
 ---
 
 На моей памяти, чаще всего для работы с базами данных в PHP-проектах используют Doctrine ORM.
@@ -77,6 +77,7 @@ public function getDependencies() : array
             \Zend\Db\Adapter\Adapter::class => \Zend\Db\Adapter\AdapterServiceFactory::class,
 
             // фабрика, которая подготавливает объект для работы с таблицей customer
+            // в данном случае фабрика - это анонимная функция
             Table\CustomerTable::class => function($container) {
                 // создаем соединение с БД
                 $dbAdapter = $container->get(AdapterInterface::class);
@@ -97,7 +98,7 @@ public function getDependencies() : array
 Именно эту фабрику мы и объявляем, т.е. при запросе из DI-контейнера класса \Zend\Db\Adapter\Adapter будут исполняться методы класса \Zend\Db\Adapter\AdapterServiceFactory, которые и подготовят нужный нам объект.   
 
 Второе - создаем объект для операций с таблицей. Тут фабрика представляет собой анонимную функцию, в которой 
-- используется объявленный раннее Adapter (читай, подключение к БД), 
+- используется объявленный раннее Adapter (читай - подключение к БД), 
 - указывается, что каждую строку таблицы описывает какой-то класс
 
 Т.е. описанное выше указывает, что при запросе из контейнера класса `\Database\Table\CustomerTable` будет 
@@ -112,49 +113,56 @@ public function getDependencies() : array
 - \Database\src\Model\Customer.php
   
   Результатом запроса может быть объект или массив (это описано в классе ResultSet).
-  Если целью является использовать данные как объект - то в качестве возвращаемого значения должен быть эксемпляр класса _ArrayObject_.
-```
-<?php
-
-namespace Database\Model;
-
-class Customer extends \ArrayObject
-{
-    public $id;
-    public $username;
-    public $password;
-
-    public function exchangeArray(array $data)
+  Если целью является использовать данные как объект - то в качестве возвращаемого значения должен быть экземпляр класса _ArrayObject_.
+    ```
+    <?php
+    
+    namespace Database\Model;
+    
+    class Customer extends \ArrayObject
     {
-        $this->id       = !empty($data['id']) ? $data['id'] : null;
-        $this->username = !empty($data['username']) ? $data['username'] : null;
-        $this->password = !empty($data['password']) ? $data['password'] : null;
+        public $id;
+        public $username;
+        public $password;
+    
+        public function exchangeArray(array $data)
+        {
+            $this->id       = !empty($data['id']) ? $data['id'] : null;
+            $this->username = !empty($data['username']) ? $data['username'] : null;
+            $this->password = !empty($data['password']) ? $data['password'] : null;
+        }
     }
-}
-```
+    ```
+    Класс _ArrayObject_ позволяет работать с объектом, как с массивом, в том числе использовать соответствующие нотации. 
+    Например:
+    ```
+    $object["property"]
+    ```
+    Но такие возможности накладывают определенные ограничения на сам объект. Одно из них - свойства объекта должны быть публичными.
+
 - \Database\src\Table\CustomerTable.php
 
   2 класса - _TableGateway_ и _AbstractTableGateway_ объявляют некоторое количество полей и методов для работы с таблицей.
   
-  Типа, __SELECT__ | __INSERT__ | __DELETE__ | ...
+  Типа, __SELECT__ \| __INSERT__ \| __DELETE__ \| ...
    
   Для использования этого функционала в своих классах, которые работают с таблицами, делается наследование от _TableGateway_.
   
-  Отличие классов _TableGateway_ и _AbstractTableGateway_ в том, что в классе _TableGateway_ написан конструктор. 
-```
-<?php
-
-namespace Database\Table;
-
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\Adapter\AdapterInterface;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\ResultSet\ResultSetInterface;
-use Zend\Db\Sql\Sql;
-use Zend\Db\Sql\TableIdentifier;
-
-class CustomerTable extends TableGateway
-{
+  Отличие классов _TableGateway_ и _AbstractTableGateway_ в том, что в классе _TableGateway_ описан конструктор. 
+  ```
+  <?php
+    
+  namespace Database\Table;
+    
+  use Zend\Db\TableGateway\TableGateway;
+  use Zend\Db\Adapter\AdapterInterface;
+  use Zend\Db\ResultSet\ResultSet;
+  use Zend\Db\ResultSet\ResultSetInterface;
+  use Zend\Db\Sql\Sql;
+  use Zend\Db\Sql\TableIdentifier;
+    
+  class CustomerTable extends TableGateway
+  {
     /**
      * Constructor.
      *
@@ -165,17 +173,17 @@ class CustomerTable extends TableGateway
      * @param Sql|null $sql
      */
     public function __construct(
-        $table,
-        AdapterInterface $adapter,
-        $features = null,
-        ResultSetInterface $resultSetPrototype = null,
-        Sql $sql = null
+            $table,
+            AdapterInterface $adapter,
+            $features = null,
+            ResultSetInterface $resultSetPrototype = null,
+            Sql $sql = null
     ) {
         parent::__construct($table, $adapter, $features, $resultSetPrototype, $sql);
-    }
-
+      }
+    
     public function fetchAll() {
         return $this->select();
+      }
     }
-}
-```
+  ```

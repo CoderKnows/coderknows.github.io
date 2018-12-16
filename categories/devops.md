@@ -1,4 +1,4 @@
 ---
 layout:     categories
-categories: [Zend Expressive]
+categories: [DevOps]
 ---
