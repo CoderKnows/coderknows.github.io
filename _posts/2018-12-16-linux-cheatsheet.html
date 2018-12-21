@@ -13,6 +13,14 @@ categories: [DevOps]
         </div>
         <div class="block-body">
             <dl>
+                <dt>cat /etc/passwd</dt>
+                <dd>список пользователей. Записи имеют следующий формат
+                    имя_пользователя:пароль:id_пользователя:id_группы:группа:домашний_каталог:оболочка</dd>
+
+                <dt>cat /etc/group</dt>
+                <dd>список групп. Записи имеют следующий формат
+                    имя_группы:пароль:id_группы:список_пользователей_группы</dd>
+
                 <dt>sudo adduser user group</dt>
                 <dd>добавить нового пользователя _user_ в группу _group_</dd>
 
@@ -21,6 +29,45 @@ categories: [DevOps]
 
                 <dt>sudo deluser user group</dt>
                 <dd>удалить пользователя _user_ из группы _group_</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-header">
+            <h4>Операции с репозиториями</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>sudo cat /etc/apt/sources.list</dt>
+                <dd>системный список репозиториев (Debian/Ubuntu)</dd>
+
+                <dt>sudo apt—add—repository "deb http://www.rabbitmq.com/debian/ testing main"</dt>
+                <dd>добавление нового репозитория при использовании APT (Debian/Ubuntu)</dd>
+
+                <dt>sudo apt—add—repository -r "deb http://www.rabbitmq.com/debian/ testing main"</dt>
+                <dd>удаление репозитория при использовании APT (Debian/Ubuntu)</dd>
+
+                <dt>echo 'deb http://www.rabbitmq.com/debian/ testing main' | sudo tee /etc/apt/sources.list.d/rabbitmq.list</dt>
+                <dd>добавление новго репозитория (Debian/Ubuntu)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-header">
+            <h4>Операции с архивами</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>tar -zcvf archive-name.tar.gz directory-name</dt>
+                <dd>упаковать каталог в файл с помощью tar и сжать с помощью gzip</dd>
+
+                <dt>tar -zxvf archive-name.tar.gz -C /path/to/directory</dt>
+                <dd>распаковывает архив archive-name.tar.gz в каталог directory</dd>
+
+                <dt>zip -r archive-name.zip directory-name</dt>
+                <dd>упаковать каталог с помощью zip</dd>
             </dl>
         </div>
     </div>
