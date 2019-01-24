@@ -98,3 +98,4 @@ job2:
 
 __Ссылки по теме__:
 1. [Официальная документация](https://docs.gitlab.com/ee/ci/) (en)
+2. [GitLab Runner repository](https://gitlab.com/gitlab-org/gitlab-runner)
