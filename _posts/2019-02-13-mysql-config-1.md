@@ -66,6 +66,33 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED VIA unix_socket WIT
 В последнем случае нужно понимать, что в MySQL `localhost` и `127.0.0.1` - это не одно и то же.
 
 
+Следующая проблема:
+
+```
+Jan 1 00:00:00 ubuntu mysqld[1757]: 190213  0:00:00 [Note] InnoDB: 128 rollback segment(s) are active.
+```
+
+Обычно, это примечание вылезает после обновления СУБД и это происходит из-за смены форматов хранения InnoDB. 
+Вероятно, в предыдущей версии сервера MySQL использовался формат файла Barracuda, а после обновления вы используете 
+формат хранения Antelope.
+
+Посмотреть текущий формат можно с помощью команды:
+
+```
+show variables like '%innodb_file%';
++--------------------------+----------+
+| Variable_name            | Value    |
++--------------------------+----------+
+| innodb_file_format       | Antelope |
+| innodb_file_format_check | ON       |
+| innodb_file_format_max   | Antelope |
+| innodb_file_per_table    | ON       |
++--------------------------+----------+
+4 rows in set (0.00 sec)
+```
+
 
 __Полезные ссылки__:
 1. [Stack Overflow #43439111](https://stackoverflow.com/questions/43439111/mariadb-warning-rootlocalhost-has-both-the-password-will-be-ignored)
+2. [nixWare.net](http://nixware.net/fix-mysql-128-rollback-segments-are-active-and-waiting-for-purge-to-start)
+3. [MySQL Official Docs](https://dev.mysql.com/doc/refman/8.0/en/innodb-undo-logs.html)
