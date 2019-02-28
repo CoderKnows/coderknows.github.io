@@ -71,6 +71,9 @@ categories: [DevOps]
 
                 <dt>echo 'deb http://www.rabbitmq.com/debian/ testing main' | sudo tee /etc/apt/sources.list.d/rabbitmq.list</dt>
                 <dd>добавление новго репозитория (Debian/Ubuntu)</dd>
+
+                <dt>dpkg -l</dt>
+                <dd>список установленных пакетов</dd>
             </dl>
         </div>
     </div>
@@ -93,4 +96,16 @@ categories: [DevOps]
         </div>
     </div>
 
+    <div class="block">
+        <div class="block-header">
+            <h4>Сетевые соединения</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>netstat -tupln | grep LISTEN</dt>
+                <dd>список открытых и прослушиваемых TCP-портов</dd>
+
+            </dl>
+        </div>
+    </div>
 </div>
