@@ -57,7 +57,7 @@ __Теперь, как настраивать__.
    ```
 1. Делаем dump базы:
    ```
-    mysqldump -p -u root --single-transaction --skip-lock-tables --hex-blob --master-data=2 dbName | gzip > ~/dbName.sql.gz
+    mysqldump -p -u root --single-transaction --skip-lock-tables --hex-blob --master-data=2 dbName | gzip > ~/dbNameDump.sql.gz
    ```
    где:
      - `--master-data` нужно указать обязательно, он добавляет в выгрузку данные о текущей точке в binlog-е.
@@ -65,7 +65,7 @@ __Теперь, как настраивать__.
 На сервере со slave-базой:
 1. Восстанавливаем базу из dump-а:
    ```
-   gunzip dbName.sql.gz
+   gunzip dbNameDump.sql.gz
    mysql -p -u root -D dbName < dbNameDump.sql
    ```
 1. Смотрим, с какой точки начать репликацию:
@@ -79,6 +79,8 @@ __Теперь, как настраивать__.
    ```
    sudo vi \etc\mysql\mariadb.conf.d\50-server.cnf
    ```
+   Но, всё так же, основной конфигурационный файл - это `my.cnf`, а все остальные конфигурационные файлы вставляются 
+   в него через директиву include.
 1. Включаем ведение файлов bin-log.
    ```
    log_bin          = /var/log/mysql/mysql-bin.log
