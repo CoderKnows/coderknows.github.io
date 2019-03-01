@@ -34,46 +34,90 @@ __Теперь, как настраивать__.
    ```
    sudo vi \etc\mysql\my.cnf
    ```
-2. Включаем ведение файлов bin-log.
+1. Включаем ведение файлов bin-log.
    ```
    log_bin          = /var/log/mysql/mariadb-bin
    log_bin_index    = /var/log/mysql/mariadb-bin.index
    max_binlog_size  = 100M
    expire_logs_days = 10
    ```
-3. Устанавливаем идентификатор сервера. 
+1. Устанавливаем идентификатор сервера. 
    ```
    server-id = 1
    ```
-4. Перезапускаем сервер:
+1. Перезапускаем сервер:
    ```
    sudo service mysql restart
    ``` 
+1. Запускаем клиент СУБД и создаем пользователя с правами на репликацию:
+   ```
+   mysql -p -u root
+   
+   GRANT REPLICATION SLAVE ON *.* TO 'user_replicate'@'%' IDENTIFIED BY 'yourSuperMegaPassword';
+   ```
+1. Делаем dump базы:
+   ```
+    mysqldump -p -u root --single-transaction --skip-lock-tables --hex-blob --master-data=2 dbName | gzip > ~/dbName.sql.gz
+   ```
+   где:
+     - `--master-data` нужно указать обязательно, он добавляет в выгрузку данные о текущей точке в binlog-е.
 
 На сервере со slave-базой:
+1. Восстанавливаем базу из dump-а:
+   ```
+   gunzip dbName.sql.gz
+   mysql -p -u root -D dbName < dbNameDump.sql
+   ```
+1. Смотрим, с какой точки начать репликацию:
+   ```
+   > head dbName.sql -n100 | grep "gtid_slave_pos"
+   
+   // вывод должен быть примерно таким:
+   -- SET GLOBAL gtid_slave_pos='0-1-74712158';
+   ```
 1. Конфигурационный файл уже оказался немного другой:
    ```
    sudo vi \etc\mysql\mariadb.conf.d\50-server.cnf
    ```
-2. Включаем ведение файлов bin-log.
+1. Включаем ведение файлов bin-log.
    ```
    log_bin          = /var/log/mysql/mysql-bin.log
    log_bin_index    = /var/log/mysql/mysql-bin.index
    max_binlog_size  = 100M
    expire_logs_days = 10
    ```
-3. Устанавливаем идентификатор сервера. 
+1. Устанавливаем идентификатор сервера. 
    ```
    server-id = 2
    ```
-4. Задаем базу, которую будем реплицировать:
+1. Задаем базу, которую будем реплицировать:
    ```
    replicate_do_db = dbName
    ```
    Для репликации нескольких баз нужно повторить этот параметр для каждой базы.
-5. Перезапускаем сервер:
+1. Перезапускаем сервер:
    ```
    sudo service mysql restart
+   ```
+1. Запускаем клиент СУБД и запускаем репликацию:
+   ```
+   mysql -p -u root
+   
+   // указываем, с какой точки читать bin-log
+   SET GLOBAL gtid_slave_pos='0-1-74712158';
+   
+   // говорим СУБД, с какого сервера реплицировать и с какой точки binlog-а начать репликацию
+   CHANGE MASTER TO master_host="master.domain", master_port=3306, master_user="user_replicate", master_use_gtid=slave_pos;
+   
+   // или при использовании SSH-тунеля, как описано в этой статье https://coderknows.com/2019/02/28/ssh-tunel/
+   CHANGE MASTER TO master_host="127.0.0.1", master_port=33060, master_user="user_replicate", master_use_gtid=slave_pos;
+   
+   // начать репликацию
+   START SLAVE;
+   ```
+1. Посмотреть статус репликации можно командой:
+   ```
+   SHOW SLAVE STATUS\G
    ```
 
 __Полезные ссылки__:
