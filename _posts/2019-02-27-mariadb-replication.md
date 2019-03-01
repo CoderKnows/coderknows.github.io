@@ -123,11 +123,11 @@ __Теперь, как настраивать__.
    ```
 
 __Полезные ссылки__:
+1. [MariaDB.com: Global Transaction ID](https://mariadb.com/kb/en/library/gtid/)
+1. [MariaDB.com: SHOW BINLOG EVENTS](https://mariadb.com/kb/en/library/show-binlog-events/)
+1. [MariaDB.com: CHANGE MASTER TO](https://mariadb.com/kb/en/library/change-master-to/)
+1. [MariaDB.com: Replication Filters](https://mariadb.com/kb/en/library/replication-filters/)
+1. [Как настроить MySQL Master-Slave репликацию?](https://ruhighload.com/%D0%9A%D0%B0%D0%BA+%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D1%8C+mysql+master-slave+%D1%80%D0%B5%D0%BF%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8E%3f)
 1. [Репликация MySQL без простоя](https://askit.su/replikatsiya-mysql-bez-prostoya/)
-2. [Как настроить MySQL Master-Slave репликацию?](https://ruhighload.com/%D0%9A%D0%B0%D0%BA+%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D1%8C+mysql+master-slave+%D1%80%D0%B5%D0%BF%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8E%3f)
-3. [Master-Slave репликация MySQL (MariaDB)](https://zipofar.ru/doku.php?id=master-slave_replication_mysql_mariadb)
-4. [Global Transaction ID](https://mariadb.com/kb/en/library/gtid/)
-5. [SHOW BINLOG EVENTS](https://mariadb.com/kb/en/library/show-binlog-events/)
-6. [CHANGE MASTER TO](https://mariadb.com/kb/en/library/change-master-to/)
-7. [Replication Filters](https://mariadb.com/kb/en/library/replication-filters/)
-8. [Настройка репликации MySQL](http://www.hilik.org.ua/%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%80%D0%B5%D0%BF%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-mysql/)
+1. [Master-Slave репликация MySQL (MariaDB)](https://zipofar.ru/doku.php?id=master-slave_replication_mysql_mariadb)
+1. [Настройка репликации MySQL](http://www.hilik.org.ua/%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%80%D0%B5%D0%BF%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D0%B8-mysql/)
