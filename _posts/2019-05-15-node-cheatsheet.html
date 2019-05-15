@@ -1,0 +1,57 @@
+---
+layout: post
+title:  "Node.js Cheatsheet"
+author: vdovenko_eugene
+date:  2019-05-15 00:00:00 +0000
+tags:   [Node.js, JavaScript cheatsheet]
+categories: [ECMAScript]
+---
+<div class="cheatsheet">
+    <div class="block">
+        <div class="block-header">
+            <h4>mpm</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>npm list -g --depth=0</dt>
+                <dd>Выводит список npm-пакетов.<br>
+                    -g - пакеты, установленные глобально.<br>
+                    --depth - глубина отображения зависимостей. Без этого параметра отобразить все пакеты со всеми зависимостями.
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="block-header">
+            <h4>Установка Node.js</h4>
+        </div>
+        <div class="block-body">
+            <dl>
+                <dt>
+                    <pre>sudo npm cache clean -f</pre>
+                    <pre>sudo npm install -g n</pre>
+                    <pre>sudo n stable</pre>
+                </dt>
+                <dd>Установка стабильной версии node.js через npm</dd>
+
+                <dt>
+                    <pre>sudo npm cache clean -f</pre>
+                    <pre>sudo npm install -g n</pre>
+                    <pre>sudo n 4.4.2</pre>
+                </dt>
+                <dd>Установка <a href="https://github.com/nodejs/LTS/">LTS-версии</a> node.js через npm. В примере установилась версия 4.4.2</dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="links">
+    <ul>
+        <li><a href="https://medium.com/@smithua">Блог Александра Фесенко на Medium</a></li>
+        <li><a href="https://www.abeautifulsite.net/author/claviska">Cory LaViska Blog</a></li>
+    </ul>
+</div>
