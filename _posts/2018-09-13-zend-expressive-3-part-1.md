@@ -71,5 +71,5 @@ php composer.phar create-project zendframework/zend-expressive-skeleton ./
 
 __Полезные ссылки__:
  1. [Официальная документация](https://docs.zendframework.com/zend-expressive/) (en)
- 2. [Использование Zend Framework 3](https://olegkrivtsov.github.io/using-zend-framework-3-book/html/ru/toc.html) (ru)
+ 1. [Использование Zend Framework 3](https://olegkrivtsov.github.io/using-zend-framework-3-book/html/ru/toc.html) (ru)
  
