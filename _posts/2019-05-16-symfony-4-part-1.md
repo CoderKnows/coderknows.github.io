@@ -18,10 +18,12 @@ __Symfony PHP Framework__.
   ```
   composer create-project symfony/website-skeleton ./
   ```
+
 или, если не используется глобально установленный Composer:
 ```
 php composer.phar create-project symfony/skeleton ./
 ```
+
 Установка делается в __пустой__ каталог, иначе Composer будет ругаться.
 
 __Полезные ссылки__:
