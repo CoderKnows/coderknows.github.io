@@ -3,7 +3,7 @@ layout: post
 title:  "Новый проект на Symfony 4"
 author: vdovenko_eugene
 date:   2019-05-16 17:30:00 +0000
-tags:   [Symfony, php, frameworks, новый проект]
+tags:   [Symfony, php, frameworks]
 categories: [PHP]
 ---
 
