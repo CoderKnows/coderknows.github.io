@@ -5,7 +5,7 @@
             {% for tag in site.tags %}
                 {% assign slugTag = tag | slugify: 'latin' %}
 
-                {% if slugTag.size < 0 %}
+                {% if slugTag.size = 0 %}
                     {% assign slugTag = tag %}
                 {% endif %}
 
