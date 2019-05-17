@@ -3,7 +3,7 @@
         <h3 class="text-center mb-3">Теги</h3>
         <p class="text-center">
             {% for tag in site.tags %}
-                {% assign slugTag = tag | slugify: 'latin' %}
+                {% assign slugTag = tag[0] | slugify: 'latin' %}
 
                 {% if slugTag.size > 0 %}
                     <a class="badge badge-info" href="{{ '/tags/' | append: slugTag | relative_url }}">{{ tag[0] }}</a>
