@@ -3,7 +3,7 @@ layout: post
 title:  "Новый проект на Zend Expressive 3"
 author: vdovenko_eugene
 date:   2018-09-13 14:30:00 +0000
-tags:   [Zend Expressive, php, frameworks]
+tags:   [Zend Expressive, php, frameworks, new project]
 categories: [PHP]
 ---
 
