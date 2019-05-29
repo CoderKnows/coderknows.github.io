@@ -7,12 +7,12 @@
             // <a href="{{ '/author/#' | append: post.author | relative_url }}">{{ author.name }}</a>
         {% endif %}
         {% if site.disqus and post.comments != false %}
-            // <span class="disqus-comment-count" data-disqus-identifier="{{ post.id }}"></span>
+            // <a href="{{ post.url }}#disqus_thread" class="disqus-comment-count" data-disqus-identifier="{{ post.id }}"></a>
         {% endif %}
     </p>
 
     <h2 class="blog-post-title">
-        <a href="{{ post.url }}#disqus_thread" class="text-dark">{{ post.title }}</a>
+        <a href="{{ post.url }}" class="text-dark">{{ post.title }}</a>
     </h2>
 
     {% if post.summary %}
