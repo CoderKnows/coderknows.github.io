@@ -28,4 +28,3 @@ php composer.phar create-project symfony/skeleton ./
 
 __Полезные ссылки__:
  1. [Официальная документация](https://symfony.com/doc/) (en)
- 
