@@ -37,6 +37,7 @@ plugins:
   - jekyll-paginate
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-algolia
 
 paginate: 5
 
@@ -55,3 +56,9 @@ paginate: 5
 sass:
   sass_dir: _sass
   style: compressed
+
+algolia:
+  application_id: 'DRMEG0Y0B6'
+  index_name: 'CoderKnows'
+
+exclude: [vendor]
