@@ -18,7 +18,7 @@ const hitTemplate = function(hit) {
         date = moment.unix(hit.date).format('DD-MM-YYYY');
     }
 
-    let   url         = `${hit.url}#${hit.anchor}`;
+    let   url         = `${hit.url}`;  // #${hit.anchor}`;
     const title       = `${hit.title}`;
     const content     = `${hit.content}`;
     const author_url  = `{{ '/author/' | relative_url }}#${hit.author}`;
@@ -27,15 +27,23 @@ const hitTemplate = function(hit) {
     if (authors[`${hit.author}`] !== undefined) {
         author = authors[`${hit.author}`]['name'];
     }
-    console.log(authors[`${hit.author}`]);
+    let id = `${hit.url}`.substring(0, `${hit.url}`.length - 1);
 
-    return `
+    let ret = `
         <div class="blog-post">
             <p class="blog-post-meta">
                 <time>${date}</time>
-                // <a href="${author_url}">${author}</a>
-                {% if site.disqus and post.comments != false %}
-                    // <a href="${url}#disqus_thread" class="disqus-comment-count" data-disqus-identifier=""></a>
+    `;
+
+    if (author.length) {
+        ret = ret + `
+            // <a href="${author_url}">${author}</a>
+        `;
+    }
+
+    ret = ret + `
+                {% if site.disqus %}
+                    // <a href="${url}#disqus_thread" class="disqus-comment-count" data-disqus-identifier="${id}"></a>
                 {% endif %}
             </p>
 
@@ -45,7 +53,9 @@ const hitTemplate = function(hit) {
 
             <p>${content}</p>
         </div>
-  `;
+    `;
+
+    return ret;
 }
 
 // Adding searchbar and results widgets
