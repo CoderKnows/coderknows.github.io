@@ -59,5 +59,10 @@ sass:
 algolia:
   application_id: 'DRMEG0Y0B6'
   index_name: 'CoderKnows'
+  search_only_api_key: 'a8bde449cdcf28a976eef26a62d4d1e5'
+  files_to_exclude:
+    - contact.html
+    - index.html
+    - author.html
 
 exclude: [vendor]

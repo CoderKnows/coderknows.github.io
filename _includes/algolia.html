@@ -1,0 +1,71 @@
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: '{{ site.algolia.application_id }}',
+  indexName: '{{ site.algolia.index_name }}',
+  apiKey: '{{ site.algolia.search_only_api_key }}'
+});
+
+const hitTemplate = function(hit) {
+    let date = '';
+    if (hit.date) {
+        date = moment.unix(hit.date).format('DD-MM-YYYY');
+    }
+
+    let   url         = `${hit.url}#${hit.anchor}`;
+    const title       = `${hit.title}`;
+    const content     = `${hit.content}`;
+    const author_url  = `{{ '/author/' | relative_url }}#${hit.author}`;
+    const authors     = JSON.parse('{{ site.data.authors | jsonify }}');
+    let   author = '';
+    if (authors[`${hit.author}`] !== undefined) {
+        author = authors[`${hit.author}`]['name'];
+    }
+    console.log(authors[`${hit.author}`]);
+
+    return `
+        <div class="blog-post">
+            <p class="blog-post-meta">
+                <time>${date}</time>
+                // <a href="${author_url}">${author}</a>
+                {% if site.disqus and post.comments != false %}
+                    // <a href="${url}#disqus_thread" class="disqus-comment-count" data-disqus-identifier=""></a>
+                {% endif %}
+            </p>
+
+            <h2 class="blog-post-title">
+                <a href="${url}" class="text-dark">${title}</a>
+            </h2>
+
+            <p>${content}</p>
+        </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search into posts...',
+    poweredBy: true // This is required if you're on the free Community plan
+  })
+);
+
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '#search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
