@@ -1,81 +1,96 @@
+{% if site.algolia.enable %}
 <!-- Including InstantSearch.js library and styling -->
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@3.5.3/dist/instantsearch.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
 
 <script>
-// Instanciating InstantSearch.js with Algolia credentials
-const search = instantsearch({
-  appId: '{{ site.algolia.application_id }}',
-  indexName: '{{ site.algolia.index_name }}',
-  apiKey: '{{ site.algolia.search_only_api_key }}'
-});
+$(document).ready(function() {
+    const client = algoliasearch(
+        '{{ site.algolia.application_id }}',
+        '{{ site.algolia.search_only_api_key }}'
+    );
 
-const hitTemplate = function(hit) {
-    let date = '';
-    if (hit.date) {
-        date = moment.unix(hit.date).format('DD-MM-YYYY');
-    }
+    const search = instantsearch({
+      indexName: '{{ site.algolia.index_name }}',
+      searchClient: client,
+    });
 
-    let   url         = `${hit.url}`;  // #${hit.anchor}`;
-    const title       = `${hit.title}`;
-    const content     = `${hit.content}`;
-    const author_url  = `{{ '/author/' | relative_url }}#${hit.author}`;
-    const authors     = JSON.parse('{{ site.data.authors | jsonify }}');
-    let   author = '';
-    if (authors[`${hit.author}`] !== undefined) {
-        author = authors[`${hit.author}`]['name'];
-    }
-    let id = `${hit.url}`.substring(0, `${hit.url}`.length - 1);
+    search.addWidget(
+        instantsearch.widgets.configure({
+          hitsPerPage: '{{ site.paginate }}',
+        })
+    );
 
-    let ret = `
-        <div class="blog-post">
-            <p class="blog-post-meta">
-                <time>${date}</time>
-    `;
+    search.addWidget(
+      instantsearch.widgets.searchBox({
+        container: '#search',
+        placeholder: 'Поиск',
+        showReset: false,
+        showSubmit: false,
+        showLoadingIndicator: true,
+        searchAsYouType: true,  // поиск по мере ввода (true) или после submit-а (false)
+      })
+    );
 
-    if (author.length) {
-        ret = ret + `
-            // <a href="${author_url}">${author}</a>
+    // шаблон для карточки статьи
+    const hitTemplate = function(hit) {
+        const       title = `${hit.title}`;
+        const     content = `${hit.content}`;
+        const  author_url = `{{ '/author/' | relative_url }}#${hit.author}`;
+        const     authors = JSON.parse('{{ site.data.authors | jsonify }}');
+        let          date = '';
+        let        author = '';
+        let            id = `${hit.url}`.substring(0, `${hit.url}`.length - 1);  // id - это url без последнего слеша
+        let           url = `${hit.url}`;
+
+        if (authors[`${hit.author}`] !== undefined) {
+            author = authors[`${hit.author}`]['name'];
+        }
+
+        if (hit.date) {
+            date = moment.unix(hit.date).format('DD-MM-YYYY');
+        }
+
+        let ret = `
+            <article class="blog-post">
+                <p class="blog-post-meta">
+                    <time>${date}</time>
         `;
-    }
 
-    ret = ret + `
-                {% if site.disqus %}
-                    // <a href="${url}#disqus_thread" class="disqus-comment-count" data-disqus-identifier="${id}"></a>
-                {% endif %}
-            </p>
+        if (author.length) {
+            ret = ret + `
+                <a href="${author_url}">${author}</a>
+            `;
+        }
 
-            <h2 class="blog-post-title">
-                <a href="${url}" class="text-dark">${title}</a>
-            </h2>
+        ret = ret + `
+                </p>
 
-            <p>${content}</p>
-        </div>
-    `;
+                <h2 class="blog-post-title">
+                    <a href="${url}" class="text-dark">${title}</a>
+                </h2>
 
-    return ret;
-}
+                <p>${instantsearch.snippet({ attribute: 'content', hit })}</p>
+            </article>
+        `;
 
-// Adding searchbar and results widgets
-search.addWidget(
-  instantsearch.widgets.searchBox({
-    container: '#search-searchbar',
-    placeholder: 'Search into posts...',
-    poweredBy: true // This is required if you're on the free Community plan
-  })
-);
+        return ret;
+    };
 
-search.addWidget(
-  instantsearch.widgets.hits({
-    container: '#search-hits',
-    templates: {
-      item: hitTemplate
-    }
-  })
-);
+    search.addWidget(
+        instantsearch.widgets.infiniteHits({
+            container: '#hits',
+            templates: {
+                item: hitTemplate,
+                empty: `Ничего не найдено`,
+                showMoreText: 'Показать ещё',
+            },
+        })
+    );
 
-// Starting the search
-search.start();
+    // Starting the search
+    search.start();
+});
 </script>
+{% endif %}

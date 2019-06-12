@@ -83,6 +83,7 @@ main.container {
 /* Pagination */
 .blog-pagination {
   margin-bottom: 4rem;
+  text-align: center;
 }
 .blog-pagination > .btn {
   border-radius: 2rem;
@@ -122,6 +123,42 @@ main.container {
 .contacts a:hover {
   color: #000000;
   text-decoration: none;
+}
+
+/*
+ * Algolia
+ */
+.ais-SearchBox {
+  input[type=search] {
+    border: 1px solid #e5e5e5;
+    background-color: transparent;
+    text-align: center;
+    width: 200px;
+    height: 32px;
+  }
+
+  input[type=search]:focus {
+    outline: none;
+  }
+}
+
+.ais-InfiniteHits {
+  ol {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  button {
+    border: 1px solid #e5e5e5;
+    background-color: transparent;
+    padding: 5px 30px;
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 @include media-breakpoint-down(xs) {

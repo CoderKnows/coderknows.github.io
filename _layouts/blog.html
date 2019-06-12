@@ -1,15 +1,45 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
 
-<div class="col-12 col-md-8 blog-main" id="search-hits">
-    {% for post in paginator.posts %}
-        {% include postcard.html %}
-    {% endfor %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col">
+            {% include header.html %}
+        </div>
+    </div>
 
-    {% include paginator.html %}
-</div>
+    <div class="row">
+        <div class="col-12 col-md-8 blog-main">
+            <div id="hits">
+            {% for post in paginator.posts %}
+                {% include postcard.html %}
+            {% endfor %}
 
-<aside class="col-12 col-md-4 blog-sidebar">
-    {% include tagcloud.html %}
-</aside>
+            {% include paginator.html %}
+            </div>
+        </div>
+
+        <aside class="col-12 col-md-4 blog-sidebar">
+            {% include tagcloud.html %}
+        </aside>
+    </div>
+</main>
+
+{% include footer.html %}
+
+<script src="{{ '/assets/js/fontawesome.all.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/bootstrap.min.js' | relative_url }}"></script>
+<script src="{{ '/assets//js/bootstrap.bundle.min.js' | relative_url }}"></script>
+
+{% include algolia.html %}
+
+{% if site.disqus.enable %}
+<script id="dsq-count-scr" src="//{{ site.disqus.shortname }}.disqus.com/count.js" async></script>
+{% endif %}
+
+<script src="{{ '/assets//js/main.js' | relative_url }}"></script>
+</body>
+</html>

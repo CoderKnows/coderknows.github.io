@@ -1,18 +1,21 @@
-{% if site.disqus and page.comments != false %}
-<div id="disqus_thread"></div>
+{% if site.disqus.enable and page.comments != false %}
 <script>
-  var disqus_shortname = '{{ site.disqus_shortname }}';
-  var disqus_config = function () {
-    this.page.url = "{{ page.url | prepend: site.url }}";
-    this.page.identifier = "{{ page.id }}";
-  };
+    $(document).ready(function() {
+        const disqus_shortname = '{{ site.disqus.shortname }}';
+        const disqus_config = function () {
+            this.page.url = "{{ page.url | prepend: site.url }}";
+            this.page.identifier = "{{ page.id }}";
+        };
 
-  (function() {  // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+        (function() {
+            let d = document;
+            let s = d.createElement('script');
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    });
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//{{ site.disqus.shortname }}.disqus.com/count.js" async></script>
 {% endif %}

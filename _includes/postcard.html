@@ -4,15 +4,17 @@
     <p class="blog-post-meta">
         <time>{{ post.date | date: "%d-%m-%Y" }}</time>
         {% if author %}
-            // <a href="{{ '/author/#' | append: post.author | relative_url }}">{{ author.name }}</a>
-        {% endif %}
-        {% if site.disqus and post.comments != false %}
-            // <a href="{{ post.url }}#disqus_thread" class="disqus-comment-count" data-disqus-identifier="{{ post.id }}"></a>
+            <a href="{{ '/author/#' | append: post.author | relative_url }}">{{ author.name }}</a>
         {% endif %}
     </p>
 
     <h2 class="blog-post-title">
         <a href="{{ post.url }}" class="text-dark">{{ post.title }}</a>
+        {% if site.disqus.enable and post.comments != false %}
+            <sup>
+                <a href="{{ post.url }}#disqus_thread" class="disqus-comment-count" data-disqus-identifier="{{ post.id }}"></a>
+            </sup>
+        {% endif %}
     </h2>
 
     {% if post.summary %}

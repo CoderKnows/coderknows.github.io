@@ -22,13 +22,12 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/"
 # the base hostname & protocol for your site, e.g. http://example.com
 url: "http://coderknows.com"
-disqus: true
-disqus_shortname: "coderknows"
 permalink: /:year/:month/:day/:title/
 
-email: feedback@coderknows.com
-github_username: CoderKnows
-telegram_username: CoderKnows
+email: "feedback@coderknows.com"
+phone: "+447509769346"
+github_username: "CoderKnows"
+telegram_username: "CoderKnows"
 
 # Build settings
 markdown: kramdown
@@ -43,7 +42,8 @@ paginate: 5
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
+exclude:
+  - vendor
 #   - Gemfile
 #   - Gemfile.lock
 #   - node_modules
@@ -57,12 +57,15 @@ sass:
   style: compressed
 
 algolia:
-  application_id: 'DRMEG0Y0B6'
+  enable: true
   index_name: 'CoderKnows'
+  application_id: 'DRMEG0Y0B6'
   search_only_api_key: 'a8bde449cdcf28a976eef26a62d4d1e5'
   files_to_exclude:
     - contact.html
     - index.html
     - author.html
 
-exclude: [vendor]
+disqus:
+  enable: true
+  shortname: "coderknows"

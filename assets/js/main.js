@@ -15,4 +15,16 @@ $(document).ready(function(){
         }, 500);
         return false;
     });
+
+
+   $('.contacts.email').each(function(){
+       let val = '<i class="fa fa-envelope"></i> <a href="mailto:' + $(this).attr('data-value') + '">' + $(this).attr('data-value') + '</a>';
+       $(this).html(val);
+   });
+
+   $('.contacts.phone').each(function(){
+       let val = '<i class="fas fa-phone-square"></i> <a href="tel:' + $(this).attr('data-value') + '">' + $(this).attr('data-value') + '</a>';
+       $(this).html(val);
+   });
+
 });
