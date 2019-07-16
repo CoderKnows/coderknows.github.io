@@ -1,0 +1,41 @@
+{% if site.algolia.enable %}
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@3.5.3/dist/instantsearch.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    const client = algoliasearch(
+        '{{ site.algolia.application_id }}',
+        '{{ site.algolia.search_only_api_key }}'
+    );
+
+    const search = instantsearch({
+      indexName: '{{ site.algolia.index_name }}',
+      searchClient: client,
+      routing: true,
+    });
+
+    search.addWidget(
+        instantsearch.widgets.configure({
+          hitsPerPage: '{{ site.paginate }}',
+        })
+    );
+
+    search.addWidget(
+      instantsearch.widgets.searchBox({
+        container: '#search',
+        placeholder: 'Поиск',
+        showReset: false,
+        showSubmit: false,
+        showLoadingIndicator: true,
+        searchAsYouType: false,  // поиск по мере ввода (true) или после submit-а (false)
+      })
+    );
+
+    // Starting the search
+    search.start();
+});
+</script>
+{% endif %}
