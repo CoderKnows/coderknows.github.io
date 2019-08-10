@@ -74,3 +74,7 @@ sites:
       to: /var/www/project/www
       php: "5.6"
 ```
+
+__Документация по теме__:
+1. [Getting Homestead to play nice with Hyper-V](https://dev.to/nicolus/getting-homestead-to-play-nice-with-hyper-v-4202)
+1. [Learning to Use Vagrant on Windows 10](https://docs.microsoft.com/en-us/virtualization/community/team-blog/2017/20170706-vagrant-and-hyper-v-tips-and-tricks)
